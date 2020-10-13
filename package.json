@@ -1,0 +1,20 @@
+{
+  "name": "q-a",
+  "version": "1.0.0",
+  "description": "API for questions and answers",
+  "author": "Daniel Kang",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "start": "node ./server/app.js"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "morgan": "1.9.1"
+  },
+  "devDependencies": {}
+}
