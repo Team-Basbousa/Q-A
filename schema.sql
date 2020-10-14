@@ -1,10 +1,5 @@
 \connect questions;
 
-
-
-
-
-
 DROP TABLE IF EXISTS questions.prod_q;
 
 CREATE TABLE questions.prod_q (
@@ -14,7 +9,7 @@ CREATE TABLE questions.prod_q (
   PRIMARY KEY (id, question_id)
 );
 
-
+CREATE INDEX prod_q on questions.prod_q (question_id)
 
 DROP TABLE IF EXISTS questions.questions;
 
@@ -31,6 +26,7 @@ CREATE TABLE questions.questions (
     FOREIGN KEY (question_id) REFERENCES questions.prod_q(question_id)
 );
 
+CREATE INDEX questions on questions.questions (question_id)
 
 DROP TABLE IF EXISTS questions.q_a;
 
@@ -42,6 +38,8 @@ CREATE TABLE questions.q_a (
   CONSTRAINT question_qa
     FOREIGN KEY (question_id) REFERENCES questions.questions(question_id)
 );
+
+CREATE INDEX q_a on questions.q_a (question_id, answer_id)
 
 
 DROP TABLE IF EXISTS questions.answers;
@@ -58,6 +56,7 @@ CREATE TABLE questions.answers (
     FOREIGN KEY (answer_id) REFERENCES questions.q_a(answer_id)
 );
 
+CREATE INDEX answers on questions.answers (answer_id)
 
 DROP TABLE IF EXISTS questions.photos;
 
@@ -71,6 +70,7 @@ CREATE TABLE questions.photos (
     FOREIGN KEY (answer_id) REFERENCES questions.answers(answer_id)
 );
 
+CREATE INDEX photos on questions.photos (answer_id)
 
 
 -- Table Properties
