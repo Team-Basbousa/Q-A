@@ -42,3 +42,11 @@ db.query(
   .catch((err) => console.error(err));
 
 // console.log(__dirname__);
+
+// select count(*) from (select * from questions where product_id = 1) q
+// left join q_a
+// on q.question_id = q_a.question_id
+// left join answers
+// on q_a.answer_id = answers.answer_id
+// left join photos
+// on answers.answer_id = photos.answer_id;
