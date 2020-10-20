@@ -1,5 +1,5 @@
 var pg = require('pg');
-var conString = 'postgres://postgres:postgres@localhost:5432/questions';
+var conString = 'postgres://postgres:postgres@postgres:5432/questions';
 
 var db = new pg.Client(conString);
 db.connect((err) => {
