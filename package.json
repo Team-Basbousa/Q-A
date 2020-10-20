@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node ./server/app.js",
-    "load-raw": "/usr/pgsql-9.2/bin -U postgres -f raw_schema.sql"
+    "load-raw": "node ./server/db/load/load_raw.js"
   },
   "dependencies": {
     "body-parser": "1.19.0",
