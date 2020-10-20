@@ -5,7 +5,6 @@ var db = new pg.Client({
   host: 'localhost',
   port: 5432,
   user: 'postgres',
-  password: 'postgres',
 });
 db.connect((err) => {
   if (err) {
