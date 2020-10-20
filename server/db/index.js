@@ -2,7 +2,7 @@ var pg = require('pg');
 var conString = 'postgres://postgres:postgres@localhost:5432/questions';
 
 var db = new pg.Client({
-  host: 'localhost',
+  host: 'db',
   port: 5432,
   user: 'postgres',
 });
