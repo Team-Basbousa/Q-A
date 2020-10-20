@@ -3,6 +3,7 @@ var questions = require('./controllers/questions');
 //Connect controller methods to their corresponding routes
 router.get('/questions', questions.get);
 router.get('/questions/:question_id/answers');
+router.get('/test', questions.test);
 // router.post('/qa/questions');
 // router.post('/qa/questions/:question_id/answers');
 // router.put('/qa/questions/:question_id/helpful');

@@ -1,5 +1,12 @@
 var questions = require('../models/questions');
 
+var test = (req, res) => {
+  questions
+    .test()
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(500).send(err));
+};
+
 var get = (req, res) => {
   //call model functions
   var retObj = {};
@@ -58,4 +65,4 @@ var get = (req, res) => {
     .catch((err) => console.error(err));
 };
 
-module.exports = { get };
+module.exports = { get, test };

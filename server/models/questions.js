@@ -17,4 +17,7 @@ var getAllQuestions = (productId) => {
     })
     .catch((err) => console.error(err));
 };
-module.exports = { getAllQuestions };
+var test = () => {
+  return db.query(`select * from questions`);
+};
+module.exports = { getAllQuestions, test };
