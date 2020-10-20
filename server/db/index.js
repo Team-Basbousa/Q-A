@@ -4,6 +4,7 @@ var conString = 'postgres://postgres:postgres@localhost:5432/questions';
 var db = new pg.Client(conString);
 db.connect((err) => {
   if (err) {
+    console.error(err);
     console.error('Error connecting to PG');
   } else {
     console.log('Connected to PostgresDB');
