@@ -3,7 +3,8 @@ var db = require('../index.js');
 console.log('creating questions_raw');
 var loadRaw = () => {
   db.query(
-    `DROP TABLE IF EXISTS questions_raw CASCADE;
+    `
+    DROP TABLE IF EXISTS questions_raw CASCADE;
     CREATE TABLE questions_raw (
     id SERIAL,
     question_id INTEGER UNIQUE DEFAULT NULL,

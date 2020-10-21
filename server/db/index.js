@@ -1,11 +1,11 @@
 var pg = require('pg');
-var conString = 'postgres://postgres:postgres@localhost:5432/questions';
 
 var db = new pg.Client({
   host: 'db',
   password: 'zxcvbn',
   port: 5432,
   user: 'postgres',
+  database: 'questions',
 });
 db.connect((err) => {
   if (err) {
