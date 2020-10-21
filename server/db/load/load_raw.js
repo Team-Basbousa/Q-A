@@ -1,5 +1,6 @@
 var db = require('../index.js');
 
+console.log('loading questions_raw');
 db.query(
   `CREATE TABLE questions_raw (
     id SERIAL,
@@ -15,6 +16,7 @@ db.query(
   );`
 )
   .then(() => {
+    console.log('loading answers_raw');
     return db.query(` CREATE TABLE answers_raw (
     id SERIAL,
     answer_id INTEGER UNIQUE DEFAULT NULL,
@@ -29,6 +31,7 @@ db.query(
   );`);
   })
   .then(() => {
+    console.log('loading photos_raw');
     return db.query(
       `CREATE TABLE photos_raw (
   id SERIAL,
