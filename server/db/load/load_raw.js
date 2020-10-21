@@ -6,7 +6,6 @@ var loadRaw = () => {
     `
     DROP TABLE IF EXISTS questions_raw CASCADE;
     CREATE TABLE questions_raw (
-    id SERIAL,
     question_id INTEGER UNIQUE DEFAULT NULL,
     product_id INTEGER DEFAULT NULL,
     question_body TEXT DEFAULT NULL,
@@ -15,14 +14,13 @@ var loadRaw = () => {
     asker_email TEXT DEFAULT NULL,
     question_helpfulness INTEGER DEFAULT NULL,
     question_reported INTEGER DEFAULT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (question_id)
   );`
   )
     .then(() => {
       console.log('creating answers_raw');
       return db.query(`DROP TABLE IF EXISTS answers_raw CASCADE;
     CREATE TABLE answers_raw (
-    id SERIAL,
     answer_id INTEGER UNIQUE DEFAULT NULL,
     question_id INTEGER DEFAULT NULL,
     answer_body TEXT DEFAULT NULL,
@@ -31,7 +29,7 @@ var loadRaw = () => {
     answerer_email TEXT DEFAULT NULL,
     answer_helpfulness INTEGER DEFAULT NULL,
     answer_reported INTEGER DEFAULT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (answer_id)
   );`);
     })
     .then(() => {
@@ -39,11 +37,10 @@ var loadRaw = () => {
       return db.query(
         `DROP TABLE IF EXISTS photos_raw CASCADE;
       CREATE TABLE photos_raw (
-      id SERIAL,
       photo_id INTEGER DEFAULT NULL,
       answer_id INTEGER DEFAULT NULL,
       photo_url TEXT DEFAULT NULL,
-      PRIMARY KEY (id)
+      PRIMARY KEY (photo_id)
       );`
       );
     })
