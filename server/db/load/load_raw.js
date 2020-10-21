@@ -1,8 +1,8 @@
 var db = require('../index.js');
 
 console.log('creating questions_raw');
-return db
-  .query(
+var loadRaw = () => {
+  db.query(
     `DROP TABLE IF EXISTS questions_raw CASCADE;
     CREATE TABLE questions_raw (
     id SERIAL,
@@ -17,9 +17,9 @@ return db
     PRIMARY KEY (id)
   );`
   )
-  .then(() => {
-    console.log('creating answers_raw');
-    return db.query(`DROP TABLE IF EXISTS answers_raw CASCADE;
+    .then(() => {
+      console.log('creating answers_raw');
+      return db.query(`DROP TABLE IF EXISTS answers_raw CASCADE;
     CREATE TABLE answers_raw (
     id SERIAL,
     answer_id INTEGER UNIQUE DEFAULT NULL,
@@ -32,11 +32,11 @@ return db
     answer_reported INTEGER DEFAULT NULL,
     PRIMARY KEY (id)
   );`);
-  })
-  .then(() => {
-    console.log('creating photos_raw');
-    return db.query(
-      `DROP TABLE IF EXISTS photos_raw CASCADE;
+    })
+    .then(() => {
+      console.log('creating photos_raw');
+      return db.query(
+        `DROP TABLE IF EXISTS photos_raw CASCADE;
       CREATE TABLE photos_raw (
       id SERIAL,
       photo_id INTEGER DEFAULT NULL,
@@ -44,9 +44,12 @@ return db
       photo_url TEXT DEFAULT NULL,
       PRIMARY KEY (id)
       );`
-    );
-  })
-  .then(() => {
-    console.log('raw data tables created');
-  })
-  .catch((err) => console.error(err));
+      );
+    })
+    .then(() => {
+      console.log('raw data tables created');
+    })
+    .catch((err) => console.error(err));
+};
+
+loadRaw();

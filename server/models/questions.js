@@ -18,6 +18,6 @@ var getAllQuestions = (productId) => {
     .catch((err) => console.error(err));
 };
 var test = () => {
-  return db.query(`select * from questions_raw`);
+  return db.query(`select * from photos_raw`);
 };
 module.exports = { getAllQuestions, test };
