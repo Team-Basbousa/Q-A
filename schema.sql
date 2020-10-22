@@ -39,7 +39,7 @@ CREATE INDEX questions on questions(question_id, product_id);
 
 CREATE TABLE answers (
   answer_id INTEGER UNIQUE DEFAULT NULL,
-  question_id INTEGER DEFAULT NULL
+  question_id INTEGER DEFAULT NULL,
   answer_body TEXT DEFAULT NULL,
   answer_date TIMESTAMP DEFAULT NULL,
   answerer_name TEXT DEFAULT NULL,
@@ -54,11 +54,9 @@ CREATE INDEX answers on answers (answer_id, question_id);
 -------------------------
 
 CREATE TABLE photos (
-  id SERIAL
-  photo_id INTEGER DEFAULT NULL,
   answer_id INTEGER DEFAULT NULL,
+  photo_id INTEGER DEFAULT NULL,
   photo_url TEXT DEFAULT NULL,
-  PRIMARY KEY (id),
   CONSTRAINT ans_photo
     FOREIGN KEY (answer_id) REFERENCES answers(answer_id)
 );
