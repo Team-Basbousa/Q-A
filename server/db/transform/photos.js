@@ -12,7 +12,7 @@ var db = require('../index.js');
 db.query(
   `DROP TABLE IF EXISTS photos CASCADE;
   CREATE TABLE photos AS
-  SELECT id,answer_id, ROW_NUMBER() OVER (PARTITION BY answer_id ORDER BY photo_id ASC) AS photo_id, photo_url FROM photos_raw;
+  SELECT answer_id, ROW_NUMBER() OVER (PARTITION BY answer_id ORDER BY photo_id ASC) AS photo_id, photo_url FROM photos_raw;
 
   CREATE INDEX ON photos (answer_id);`
 )
