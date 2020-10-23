@@ -1,52 +1,61 @@
-var csv = require('csv-stream');
-var request = require('request');
-var fs = require('fs');
 var db = require('../index.js');
-// All of these arguments are optional.
 
-db.query(
-  `
- COPY photos_raw(photo_id, answer_id, photo_url)
- FROM '/Users/danielkang/HR/SDC/Q-A/answers_photos.csv'
- DELIMITER ','
- CSV HEADER;
- `
-)
-  .then((data) => {
-    console.log('copied photos');
-    return db
-      .query(
-        `
-    COPY answers_raw(answer_id, question_id, answer_body, answer_date, answerer_name,answerer_email, answer_helpfulness, answer_reported)
-    FROM '/Users/danielkang/HR/SDC/Q-A/answers.csv'
-    DELIMITER ','
-    CSV HEADER;
+console.log('creating questions');
+var load = () => {
+  db.query(
     `
-      )
-      .catch((err) => console.error(err));
-  })
-  .then((data) => {
-    console.log('copied answers');
-    return db
-      .query(
+    CREATE TABLE questions (
+      question_id INTEGER UNIQUE DEFAULT NULL,
+      product_id INTEGER DEFAULT NULL,
+      question_body TEXT DEFAULT NULL,
+      question_date TIMESTAMP DEFAULT NULL,
+      asker_name TEXT DEFAULT NULL,
+      question_helpfulness INTEGER DEFAULT NULL,
+      question_reported INTEGER DEFAULT NULL,
+      PRIMARY KEY (question_id)
+    );
+
+    CREATE INDEX on questions(product_id);`
+  )
+    .then(() => {
+      console.log('creating answers');
+      return db.query(
         `
-      COPY questions_raw(question_id, product_id, question_body, question_date, asker_name,asker_email, question_helpfulness, question_reported)
-      FROM '/Users/danielkang/HR/SDC/Q-A/questions.csv'
-      DELIMITER ','
-      CSV HEADER;
+      CREATE TABLE answers (
+        answer_id INTEGER UNIQUE DEFAULT NULL,
+        question_id INTEGER DEFAULT NULL,
+        answer_body TEXT DEFAULT NULL,
+        answer_date TIMESTAMP DEFAULT NULL,
+        answerer_name TEXT DEFAULT NULL,
+        answer_helpfulness INTEGER DEFAULT NULL,
+        answer_reported INTEGER DEFAULT NULL,
+        PRIMARY KEY (answer_id),
+        CONSTRAINT qa_answer
+          FOREIGN KEY (question_id) REFERENCES questions(question_id)
+      );
+
+      CREATE INDEX on answers ( question_id);
       `
-      )
-      .catch((err) => console.error(err));
-  })
-  .then(() => console.log('copied Questions'))
-  .catch((err) => console.error(err));
+      );
+    })
+    .then(() => {
+      console.log('creating photos');
+      return db.query(
+        `CREATE TABLE photos (
+          answer_id INTEGER DEFAULT NULL,
+          photo_id INTEGER DEFAULT NULL,
+          photo_url TEXT DEFAULT NULL,
+          CONSTRAINT ans_photo
+            FOREIGN KEY (answer_id) REFERENCES answers(answer_id)
+        );
 
-// console.log(__dirname__);
+        CREATE INDEX on photos (answer_id);`
+      );
+    })
+    .then(() =>
+      console.log('data tables created');
+    )
+    .catch((err) => console.error(err));
+};
 
-// select count(*) from (select * from questions where product_id = 1) q
-// left join q_a
-// on q.question_id = q_a.question_id
-// left join answers
-// on q_a.answer_id = answers.answer_id
-// left join photos
-// on answers.answer_id = photos.answer_id;
+load();
