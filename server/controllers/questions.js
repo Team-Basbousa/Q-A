@@ -15,7 +15,7 @@ var get = (req, res) => {
   questions
     .getAllQuestions(req.query.product_id)
     .then((datas) => {
-      console.log('gotAllQuestions//controller');
+      // console.log('gotAllQuestions//controller');
       for (var obj in datas.rows) {
         var data = datas.rows[obj];
         var id = data.question_id;
@@ -27,7 +27,6 @@ var get = (req, res) => {
           results[id].asker_name = data.asker_name;
           results[id].question_helpfulness = data.question_helpfulness;
           results[id].reported = data.question_reported;
-          console.log(results[id]);
         }
         if (!results[id].answers) {
           results[id].answers = {};
@@ -59,7 +58,7 @@ var get = (req, res) => {
       for (let item in results) {
         retObj.results.push(results[item]);
       }
-      console.log(retObj);
+      // console.log('about to status: ' + retObj);
       res.status(200).send(retObj);
     })
     .catch((err) => console.error(err));

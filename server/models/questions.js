@@ -10,7 +10,7 @@ var getAllQuestions = (productId) => {
     on answers.answer_id = photos.answer_id;`
     )
     .then((data) => {
-      console.log('gotAllQuestions//model');
+      // console.log('gotAllQuestions//model');
       return data;
     })
     .catch((err) => console.error(err));
