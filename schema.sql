@@ -62,3 +62,9 @@ CREATE TABLE photos (
 );
 
 CREATE INDEX on photos (answer_id);
+
+
+
+
+-- CREATE INDEX on questions(question_id, product_id);
+-- CREATE INDEX on answers (answer_id, question_id);
