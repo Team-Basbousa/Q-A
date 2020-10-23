@@ -52,9 +52,7 @@ var load = () => {
         CREATE INDEX on photos (answer_id);`
       );
     })
-    .then(() =>
-      console.log('data tables created');
-    )
+    .then(() => console.log('data tables created'))
     .catch((err) => console.error(err));
 };
 

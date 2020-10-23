@@ -44,9 +44,9 @@ var loadRaw = () => {
       );`
       );
     })
-    .then(() => {
+    .then(() =>
       console.log('raw data tables created');
-    })
+    )
     .catch((err) => console.error(err));
 };
 
