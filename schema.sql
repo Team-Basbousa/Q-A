@@ -18,7 +18,7 @@ CREATE TABLE questions (
   PRIMARY KEY (question_id)
 );
 
-CREATE INDEX questions on questions(question_id, product_id);
+CREATE INDEX on questions(question_id, product_id);
 
 -- CREATE TABLE q_a (
 --   question_id INTEGER DEFAULT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE answers (
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
 
-CREATE INDEX answers on answers (answer_id, question_id);
+CREATE INDEX on answers (answer_id, question_id);
 -------------------------
 
 CREATE TABLE photos (
@@ -61,4 +61,4 @@ CREATE TABLE photos (
     FOREIGN KEY (answer_id) REFERENCES answers(answer_id)
 );
 
-CREATE INDEX photos on photos (answer_id);
+CREATE INDEX on photos (answer_id);
