@@ -3,7 +3,6 @@ var db = require('./db');
 var morgan = require('morgan');
 var parser = require('body-parser');
 var router = require('./routes.js');
-var loader = require('./loaderio-3f79f5cd8508886d4f245a6ef8cd04e8.txt');
 var app = express();
 
 // Set what we are listening on.
