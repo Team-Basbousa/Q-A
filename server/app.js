@@ -23,5 +23,7 @@ app.use(express.static(__dirname + '/../client'));
 app.listen(app.get('port'));
 
 //NO DB CALLS MADE HERE
-app.get('/', (req, res) => res.status(200).send('hello'));
+app.get('/loaderio-3f79f5cd8508886d4f245a6ef8cd04e8', (req, res) =>
+  res.status(200).send('./loaderio-3f79f5cd8508886d4f245a6ef8cd04e8')
+);
 console.log('Listening on', app.get('port'));
